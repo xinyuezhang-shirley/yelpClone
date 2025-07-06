@@ -1,34 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React, { useState } from 'react'
 import './App.css'
+import BusinessList from './components/BusinessList'
+import SearchBar from './components/SearchBar'
+import Yelp from './utils/Yelp'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [businesses, setBusinesses] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const searchYelp = async (term, location, sortBy) => {
+    setLoading(true);
+    setError(null);
+    
+    try {
+      const businesses = await Yelp.search(term, location, sortBy);
+      setBusinesses(businesses);
+    } catch (err) {
+      setError('Failed to fetch businesses. Please try again.');
+      console.error('Search error:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="App">
+      <h1>Ravenous - Restaurant Finder</h1>
+      <SearchBar searchYelp={searchYelp} />
+      {loading && <div className="loading">Searching for restaurants...</div>}
+      {error && <div className="error">{error}</div>}
+      <BusinessList businesses={businesses} />
+    </div>
   )
 }
 

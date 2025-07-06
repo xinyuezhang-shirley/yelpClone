@@ -1,12 +1,101 @@
-# React + Vite
+# Ravenous - Restaurant Finder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based restaurant search application that integrates with the Yelp API to find and display restaurant information.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Search for restaurants by term and location
+- Sort results by Best Match, Highest Rated, or Most Reviewed
+- Responsive design that works on desktop and mobile
+- Real-time search results from Yelp API
+- Loading states and error handling
 
-## Expanding the ESLint configuration
+## Setup
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 1. Install Dependencies
+```bash
+npm install
+```
+
+### 2. Get Yelp API Key
+1. Go to [Yelp Developers](https://www.yelp.com/developers)
+2. Create an account and register your application
+3. Get your API key from the dashboard
+
+### 3. Configure Environment Variables
+Create a `.env` file in the root directory:
+```bash
+VITE_YELP_API_KEY=your_yelp_api_key_here
+```
+
+Replace `your_yelp_api_key_here` with your actual Yelp API key.
+
+### 4. Start Development Server
+```bash
+npm run dev
+```
+
+The application will be available at `http://localhost:5173`
+
+## Usage
+
+1. Enter a search term (e.g., "pizza", "sushi", "coffee")
+2. Enter a location (e.g., "New York", "San Francisco", "10001")
+3. Select a sort option (Best Match, Highest Rated, Most Reviewed)
+4. Click "Let's Go" to search
+5. View the results below
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── Business.jsx      # Individual business card
+│   ├── Business.css      # Business card styling
+│   ├── BusinessList.jsx  # List of businesses
+│   ├── BusinessList.css  # Business list styling
+│   ├── SearchBar.jsx     # Search interface
+│   └── SearchBar.css     # Search bar styling
+├── utils/
+│   └── Yelp.js          # Yelp API integration
+├── App.jsx              # Main application component
+└── App.css              # Application styling
+```
+
+## API Integration
+
+The application uses the Yelp Fusion API v3 to fetch restaurant data. The `Yelp.js` module handles:
+
+- API authentication
+- Search requests
+- Response processing
+- Error handling
+- Data transformation
+
+## Technologies Used
+
+- React 18
+- Vite
+- Yelp Fusion API
+- CSS3 with Flexbox
+- Modern JavaScript (ES6+)
+
+## Development Notes
+
+- The application includes fallback sample data for development/testing
+- CORS proxy is used for API requests (cors-anywhere.herokuapp.com)
+- Environment variables are used for API key security
+- Responsive design supports mobile and desktop views
+
+## Testing
+
+Test the application by searching for different types of restaurants in various locations:
+
+- "pizza" in "New York"
+- "sushi" in "Los Angeles"
+- "coffee" in "Seattle"
+- "burgers" in "Chicago"
+
+## License
+
+This project is for educational purposes.

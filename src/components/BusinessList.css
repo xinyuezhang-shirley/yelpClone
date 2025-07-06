@@ -1,0 +1,70 @@
+.BusinessList {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 4.4rem 10%;
+  gap: 1rem;
+}
+
+.no-results {
+  text-align: center;
+  width: 100%;
+  padding: 3rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.no-results h2 {
+  color: #333;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.no-results p {
+  color: #666;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Responsive design for different screen sizes */
+@media (max-width: 1200px) {
+  .BusinessList {
+    margin: 4.4rem 5%;
+  }
+}
+
+@media (max-width: 768px) {
+  .BusinessList {
+    margin: 4.4rem 2%;
+    gap: 0.5rem;
+  }
+  
+  .no-results {
+    padding: 2rem;
+  }
+  
+  .no-results h2 {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .BusinessList {
+    margin: 4.4rem 1%;
+    gap: 0.25rem;
+  }
+  
+  .no-results {
+    padding: 1.5rem;
+  }
+  
+  .no-results h2 {
+    font-size: 1.2rem;
+  }
+  
+  .no-results p {
+    font-size: 0.9rem;
+  }
+} 
